@@ -1,5 +1,15 @@
 {
   "manifest_version": 3,
+  "icons": {
+    "128": "images/icon128.png",
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png"
+  },
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
 
   "name": "Custom Youtube Plugin",
   "description": "Simple controls for looping, and jumping to most replayed if available",

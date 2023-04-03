@@ -139,9 +139,9 @@ const updateUI = (function() {
   const textReadout = document.createElement("span")
   timeDisplay.appendChild(textReadout)
 
-  // for(element of document.getElementsByClassName('ytp-ce-element')) {
-  //   element.style.display = 'none'; 
-  // }  
+  for(element of document.getElementsByClassName('ytp-ce-element')) {
+    element.style.display = 'none'; 
+  }  
 
   let allEndscreenItems = document.querySelectorAll(".ytp-ce-element");
 
