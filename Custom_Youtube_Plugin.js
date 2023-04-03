@@ -133,7 +133,7 @@ function bindListeners() {
   })
 }
 
-const updateUI = (function() {
+const updateUI = ('DOMContentLoaded', function() {
   const videoContainer = document.getElementById("movie_player")
   const timeDisplay = document.querySelector(".ytp-time-display")
   const textReadout = document.createElement("span")
