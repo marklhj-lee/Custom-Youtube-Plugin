@@ -133,11 +133,13 @@ function bindListeners() {
   })
 }
 
-const updateUI = ('DOMContentLoaded', function() {
+const updateUI = (function() {
   const videoContainer = document.getElementById("movie_player")
-  const timeDisplay = document.querySelector(".ytp-time-display")
-  const textReadout = document.createElement("span")
-  timeDisplay.appendChild(textReadout)
+  
+  
+  // const timeDisplay = document.querySelector(".ytp-time-display")
+  // const textReadout = document.createElement("span")
+  // timeDisplay.appendChild(textReadout)
 
   // for(element of document.getElementsByClassName('ytp-ce-element')) {
   //   element.style.display = 'none'; 
@@ -231,11 +233,11 @@ const updateUI = ('DOMContentLoaded', function() {
   }
 
   return function update() {
-    let readout = ` @ ${Math.round(video.playbackRate * 100)}%`
-    if (loopStart != null && loopEnd != null) {
-      readout += `, repeating from ${formatTime(loopStart)} to ${formatTime(loopEnd)}`
-    }
-    textReadout.innerHTML = readout
+    // let readout = ` @ ${Math.round(video.playbackRate * 100)}%`
+    // if (loopStart != null && loopEnd != null) {
+    //   readout += `, repeating from ${formatTime(loopStart)} to ${formatTime(loopEnd)}`
+    // }
+    // textReadout.innerHTML = readout
 
     if (loopStart != null && loopEnd != null) {
       progressListRepeatContainer.style.display = 'block'
