@@ -23,6 +23,12 @@
       ],
       "all_frames": true,
       "js": ["Custom_Youtube_Plugin.js"]
-    }
+    },
+    {
+      "all_frames": false,
+      "js": [ "content.js" ],
+      "matches": [ "*://*.youtube.com/*" ],
+      "run_at": "document_idle"
+   }
   ]
 }

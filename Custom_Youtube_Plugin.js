@@ -139,14 +139,14 @@ const updateUI = (function() {
   const textReadout = document.createElement("span")
   timeDisplay.appendChild(textReadout)
 
-  for(element of document.getElementsByClassName('ytp-ce-element')) {
-    element.style.display = 'none'; 
-  }  
+  // for(element of document.getElementsByClassName('ytp-ce-element')) {
+  //   element.style.display = 'none'; 
+  // }  
 
-  let allEndscreenItems = document.querySelectorAll(".ytp-ce-element");
+  // let allEndscreenItems = document.querySelectorAll(".ytp-ce-element");
 
-  // Hide them all
-  allEndscreenItems.forEach((item) => (item.style.display = "none"));
+  // // Hide them all
+  // allEndscreenItems.forEach((item) => (item.style.display = "none"));
   
   const progressList = document.querySelector(".ytp-progress-list")
 
