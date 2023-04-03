@@ -1,4 +1,4 @@
-const DELAY = 1;
+const DELAY = 15;
 
 /**
  * The main function to run in the extension
@@ -14,4 +14,5 @@ function main() {
 // Running it on interval for video changes
 setInterval(function () {
   main();
+
 }, 1000 * DELAY);
