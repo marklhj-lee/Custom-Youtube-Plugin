@@ -5,6 +5,7 @@ const video = document.querySelector("video.html5-main-video")
 var loopStart = null
 // Video in time in seconds for when the video should repeat to, or null if no repeating
 var loopEnd = null
+
 function goToMostReplayedSection() {
     const classes = document.getElementsByClassName("ytp-heat-map-path");
  
@@ -67,6 +68,7 @@ function restartLoop() {
     video.currentTime = loopStart
   }
 }
+
 function resetLoop(){
   if (loopStart != null || loopEnd != null){
     loopStart = null
@@ -75,9 +77,15 @@ function resetLoop(){
 }
 
 function bindListeners() {
-  var seeking = false
-  video.addEventListener('seeking', () => { seeking = true })
-  video.addEventListener('seeked', () => { seeking = false })
+  var seeking = false; // Track if video is currently seeking
+
+  // Event listener for 'seeking' event
+  video.addEventListener('seeking', () => { seeking = true });
+
+  // Event listener for 'seeked' event
+  video.addEventListener('seeked', () => { seeking = false });
+
+  // Event listener for 'timeupdate' event
   video.addEventListener('timeupdate', () => {
     if (loopStart != null && loopEnd != null) {
       if (video.currentTime - loopEnd > 0.1) {
@@ -85,35 +93,35 @@ function bindListeners() {
           // The user is seeking in the timeline past the repeat range! Extend the
           // end of the repeat range to the end of the video to allow continued
           // seeking.
-          loopEnd = video.duration
-          updateUI()
+          loopEnd = video.duration;
+          updateUI();
         } else {
           // This is the result of regular playback, and we've reached the end of
           // the repeat range! Go back to the start.
-          restartLoop()
+          restartLoop();
         }
       } else if (loopStart - video.currentTime > 0.1) {
         if (seeking) {
           // The user is seeking in the timeline before the repeat range! Extend
-          // the start of the repeat range to thestartend of the video to allow
+          // the start of the repeat range to the start of the video to allow
           // continued seeking.
-          loopStart = 0
-          updateUI()
+          loopStart = 0;
+          updateUI();
         }
       }
     }
-  })
+  });
 
   var altKeyPressed = false; // Track the state of the Alt key
 
-  // Add event listener for keydown event
+  // Add event listener for 'keydown' event
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Alt') {
       altKeyPressed = true; // Set altKeyPressed to true when Alt key is pressed
     }
   });
 
-  // Add event listener for keyup event
+  // Add event listener for 'keyup' event
   document.addEventListener('keyup', (e) => {
     if (e.key === 'Alt') {
       altKeyPressed = false; // Set altKeyPressed to false when Alt key is released
@@ -149,30 +157,20 @@ function bindListeners() {
   });
 }
 
+
 const updateUI = (function() {
+  // Get references to DOM elements
   const videoContainer = document.getElementById("movie_player")
-  
-  
   const timeDisplay = document.querySelector(".ytp-time-display")
   const textReadout = document.createElement("span")
 
   timeDisplay.appendChild(textReadout)
-
-  
-
-  // for(element of document.getElementsByClassName('ytp-ce-element')) {
-  //   element.style.display = 'none'; 
-  // }  
-
-  // let allEndscreenItems = document.querySelectorAll(".ytp-ce-element");
-
-  // // Hide them all
-  // allEndscreenItems.forEach((item) => (item.style.display = "none"));
   
   const progressList = document.querySelector(".ytp-progress-list")
 
   const markerSize = 10
 
+  // Create elements for loop markers and covers
   const beforeloopStartCover = document.createElement("div")
   beforeloopStartCover.style.height = '100%'
   beforeloopStartCover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
@@ -187,6 +185,41 @@ const updateUI = (function() {
   loopStartMarker.style.position = "absolute"
   loopStartMarker.style.top = `calc(-50% - ${markerSize/2}px)`
   loopStartMarker.style.zIndex = 999
+
+  const loopEndMarker = document.createElement("div")
+  loopEndMarker.style.position = "absolute"
+  loopEndMarker.style.width = 0
+  loopEndMarker.style.height = 0
+  loopEndMarker.style.borderTop = loopEndMarker.style.borderBottom = `${markerSize}px solid transparent`
+  loopEndMarker.style.borderRight = `${markerSize}px solid #f00`
+  loopEndMarker.style.position = "absolute"
+  loopEndMarker.style.top = `calc(-50% - ${markerSize/2}px)`
+  loopEndMarker.style.zIndex = 999
+
+  const afterloopEndCover = document.createElement("div")
+  afterloopEndCover.style.height = '100%'
+  afterloopEndCover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
+  afterloopEndCover.style.zIndex = 999
+  afterloopEndCover.style.position = "absolute"
+  afterloopEndCover.style.right = "0"
+
+  const progressListRepeatContainer = document.createElement("div")
+  progressList.appendChild(progressListRepeatContainer)
+  progressListRepeatContainer.appendChild(beforeloopStartCover)
+  progressListRepeatContainer.appendChild(afterloopEndCover)
+  progressListRepeatContainer.appendChild(loopStartMarker)
+  progressListRepeatContainer.appendChild(loopEndMarker)
+
+  // Helper function to pad a number with leading zeros
+  function zeroPad(str, length) {
+    str = `${str}`
+    while (str.length < length) str = '0' + str
+    return str
+  }
+  // Helper function to format time in minutes and seconds
+  function formatTime(seconds) {
+    return `${Math.floor(seconds / 60)}:${zeroPad(Math.floor(seconds) % 60, 2)}`
+  }
 
   function timeFromEvent(ev) {
     const bounds = progressList.getBoundingClientRect()
@@ -205,15 +238,7 @@ const updateUI = (function() {
     window.addEventListener("mouseup", onMouseUp)
   })
 
-  const loopEndMarker = document.createElement("div")
-  loopEndMarker.style.position = "absolute"
-  loopEndMarker.style.width = 0
-  loopEndMarker.style.height = 0
-  loopEndMarker.style.borderTop = loopEndMarker.style.borderBottom = `${markerSize}px solid transparent`
-  loopEndMarker.style.borderRight = `${markerSize}px solid #f00`
-  loopEndMarker.style.position = "absolute"
-  loopEndMarker.style.top = `calc(-50% - ${markerSize/2}px)`
-  loopEndMarker.style.zIndex = 999
+  
 
   loopEndMarker.addEventListener("mousedown", function() {
     function onMouseMove(ev) {
@@ -227,30 +252,11 @@ const updateUI = (function() {
     window.addEventListener("mouseup", onMouseUp)
   })
 
-  const afterloopEndCover = document.createElement("div")
-  afterloopEndCover.style.height = '100%'
-  afterloopEndCover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
-  afterloopEndCover.style.zIndex = 999
-  afterloopEndCover.style.position = "absolute"
-  afterloopEndCover.style.right = "0"
+  
+   
 
-  const progressListRepeatContainer = document.createElement("div")
-  progressList.appendChild(progressListRepeatContainer)
-  progressListRepeatContainer.appendChild(beforeloopStartCover)
-  progressListRepeatContainer.appendChild(afterloopEndCover)
-  progressListRepeatContainer.appendChild(loopStartMarker)
-  progressListRepeatContainer.appendChild(loopEndMarker)
-
-  function zeroPad(str, length) {
-    str = `${str}`
-    while (str.length < length) str = '0' + str
-    return str
-  }
-
-  function formatTime(seconds) {
-    return `${Math.floor(seconds / 60)}:${zeroPad(Math.floor(seconds) % 60, 2)}`
-  }
-
+  
+  // Update function that updates the UI based on the loop start and end values
   return function update() {
     let readout = ` @ ${Math.round(video.playbackRate * 100)}%`
     if (loopStart != null && loopEnd != null) {
@@ -280,9 +286,7 @@ function main() {
 
   bindListeners()
   updateUI()
-  console.log("Function goes brrrr!")
 
-  
   console.log("YouTube Customizer Online!")
 }
 
