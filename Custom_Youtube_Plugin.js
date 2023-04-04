@@ -1,3 +1,4 @@
+
 const video = document.querySelector("video.html5-main-video")
 
 // Video in time in seconds for when the video should repeat from, or null if no repeating
@@ -104,7 +105,7 @@ function bindListeners() {
   })
 
   document.addEventListener('keyup', (e) => {
-    if (e.key === "v") {
+    if (e.key === "v" ) {
         goToMostReplayedSection()
         return
     }
@@ -139,9 +140,9 @@ const updateUI = (function() {
   
   const timeDisplay = document.querySelector(".ytp-time-display")
   const textReadout = document.createElement("span")
-  window.addEventListener("load", (event) => {
-    timeDisplay.appendChild(textReadout)
-  });
+
+  timeDisplay.appendChild(textReadout)
+
   
 
   // for(element of document.getElementsByClassName('ytp-ce-element')) {
@@ -261,10 +262,14 @@ const updateUI = (function() {
 })()
 
 function main() {
+
   bindListeners()
   updateUI()
+  console.log("Function goes brrrr!")
+
   
   console.log("YouTube Customizer Online!")
 }
 
 main()
+

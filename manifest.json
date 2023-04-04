@@ -6,10 +6,6 @@
     "32": "images/icon32.png",
     "48": "images/icon48.png"
   },
-  "background": {
-    "service_worker": "service_worker.js",
-    "type": "module"
-  },
   "permissions": [ "declarativeContent" ],
 
   "name": "Custom Youtube Plugin",
@@ -17,12 +13,10 @@
   "version": "1.0",
   "content_scripts": [
     {
-      "matches": [
-        "https://www.youtube.com/*",
-        "https://youtube.googleapis.com/*"
-      ],
-      "all_frames": true,
-      "js": ["Custom_Youtube_Plugin.js"]
+      "all_frames": false,
+      "js": [ "Custom_Youtube_Plugin.js" ],
+      "matches": [ "*://*.youtube.com/*" ],
+      "run_at": "document_idle"
     },
     {
       "all_frames": false,
