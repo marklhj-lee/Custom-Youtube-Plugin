@@ -104,34 +104,49 @@ function bindListeners() {
     }
   })
 
+  var altKeyPressed = false; // Track the state of the Alt key
+
+  // Add event listener for keydown event
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Alt') {
+      altKeyPressed = true; // Set altKeyPressed to true when Alt key is pressed
+    }
+  });
+
+  // Add event listener for keyup event
   document.addEventListener('keyup', (e) => {
-    if (e.key === "v" ) {
-        goToMostReplayedSection()
-        return
+    if (e.key === 'Alt') {
+      altKeyPressed = false; // Set altKeyPressed to false when Alt key is released
     }
 
-
-    if (e.key === 's') {
-      setloopStart()
-      return
+    // Check for original key along with Alt key state
+    if (e.key === 'v' && altKeyPressed) {
+      goToMostReplayedSection();
+      return;
     }
 
-    if (e.key === 'e') {
-      setloopEnd()
-      return
+    if (e.key === 's' && altKeyPressed) {
+      setloopStart();
+      return;
     }
 
-    if (e.key === 'z') {
-      restartLoop()
-      updateUI()
-      return
+    if (e.key === 'w' && altKeyPressed) {
+      setloopEnd();
+      return;
     }
-    if (e.key === 'r') {
-      resetLoop()
-      updateUI()
-      return
+
+    if (e.key === 'a' && altKeyPressed) {
+      restartLoop();
+      updateUI();
+      return;
     }
-  })
+
+    if (e.key === 'g' && altKeyPressed) {
+      resetLoop();
+      updateUI();
+      return;
+    }
+  });
 }
 
 const updateUI = (function() {
