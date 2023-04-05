@@ -258,9 +258,9 @@ const updateUI = (function() {
   
   // Update function that updates the UI based on the loop start and end values
   return function update() {
-    let readout = ` @ ${Math.round(video.playbackRate * 100)}%`
+    let readout = ``
     if (loopStart != null && loopEnd != null) {
-      readout += `, repeating from ${formatTime(loopStart)} to ${formatTime(loopEnd)}`
+      readout += `Repeating from ${formatTime(loopStart)} to ${formatTime(loopEnd)}`
     }
     textReadout.innerHTML = readout
 
@@ -281,6 +281,33 @@ const updateUI = (function() {
     videoContainer.dispatchEvent(new MouseEvent('mousemove', {clientX: 2, clientY: 2}))
   }
 })()
+
+
+function reset() {
+ 
+  loopStart = null
+  loopEnd = null
+  updateUI()
+
+}
+let previousURL = window.location.href;
+
+// Function to check for page change
+function checkPageChange() {
+  // Get the current URL
+  const currentURL = window.location.href;
+  
+  // Compare current URL with previous URL
+  if (currentURL !== previousURL) {
+    // Page change detected, reset variables and UI here
+    reset()
+    // Update previous URL to current URL for next comparison
+    previousURL = currentURL;
+  }
+}
+
+// Call the checkPageChange function periodically to check for page change
+setInterval(checkPageChange, 1000);
 
 function main() {
 
