@@ -1,11 +1,10 @@
 # Custom Youtube Plugin
 
-Customize your youtube experience through chrome extension using keyboard shortcut. 
-It has a new "Jump to Most Replayed" shortcut, a customizable loop, removes recommended popups.
+Customize your YouTube experience with a Chrome extension that uses keyboard shortcuts. The extension includes a new "Jump to Most Replayed" shortcut, customizable looping, and the removal of recommended popups.
 
 ## DEMO
 
-Jumping to most replayed part of the video
+Jumping to the most replayed part of the video
 ![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/blob/master/images/JumpToMostReplayed.gif)
 
 Creating a loop
@@ -20,24 +19,24 @@ Removing the loop
 
 ### Dependencies
 
-* You must used chrome to use this extension.
+* This extension only works on the Chrome browser.
 
 ### Installing
 
-* You can either clone the repository or click topright on <> Code to download zip.
-* After either cloning or downloading and unzipping, click 3 dots on top right in chrome
-* Click more tools -> extension
-* Inside the extension page, on top left of the page, click load unpacked and load this folder.
-* Enable the extension
+* Clone the repository or download and unzip the zip file by clicking on the "Code" button on the top right.
+* After cloning or unzipping, click the three dots on the top right of Chrome.
+* Select "More Tools" -> "Extensions".
+* In the extension page, click the "Load unpacked" button on the top left and select the downloaded folder.
+* Enable the extension.
 
-### Executing program
+### Usage
 
-* To run the program, go to any youtube video
-* To jump to most replayed, press alt and v at the same time
-* To designate the loop start point, press alt and s at the same time
-* To designate the loop end point, press alt and w at the same time
-* To reset the loop, press alt and g at the same time
-* To go to the start of the loop, press alt and a at the same time
+* To use the program, go to any YouTube video.
+* To jump to the most replayed part of the video, press "Alt + V".
+* To designate the loop start point, press "Alt + S".
+* To designate the loop end point, press "Alt + W".
+* To reset the loop, press "Alt + G".
+* To go to the start of the loop, press "Alt + A".
 
 ## Help
 
