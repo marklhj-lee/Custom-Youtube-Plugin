@@ -6,6 +6,7 @@ It has a new "Jump to Most Replayed" shortcut, a customizable loop, removes reco
 ## DEMO
 
 Jumping to most replayed part of the video
+![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/tree/master/images/JumpToMostReplayed.gif)
 
 Creating a loop
 
