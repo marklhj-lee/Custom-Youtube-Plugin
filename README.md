@@ -9,10 +9,13 @@ Jumping to most replayed part of the video
 ![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/blob/master/images/JumpToMostReplayed.gif)
 
 Creating a loop
+![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/blob/master/images/CreatingALoop.gif)
 
 Going back to the start of the loop
+![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/blob/master/images/ReturnToStart.gif)
 
 Removing the loop
+![alt text](https://github.com/marklhj-lee/Custom-Youtube-Plugin/blob/master/images/RemoveLoop.gif)
 
 
 ### Dependencies
